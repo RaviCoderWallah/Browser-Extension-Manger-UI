@@ -74,17 +74,17 @@ const BrowserExtensionList = () => {
 
                     activeButton === "All" ? (
                         extension.map(({ logo, name, description, isActive }, id) => {
-                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive}/>
                         })
                     ) : activeButton === "Active" ? (
 
                         extension.filter(ext => ext.isActive === true).map(({ logo, name, description, isActive }, id) => {
-                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive}/>
                         })
                     ) : (
 
                         extension.filter(ext => ext.isActive == false).map(({ logo, name, description, isActive }, id) => {
-                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive}/>
                         })
                     )
 
