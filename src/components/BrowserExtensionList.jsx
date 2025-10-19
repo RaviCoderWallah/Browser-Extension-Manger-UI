@@ -12,6 +12,7 @@ const BrowserExtensionList = () => {
             .then((res) => res.json())
             .then((result) => {
                 setExtension(result);
+                console.log(result);
             }).catch((err) => {
                 console.log("Error: " + err)
             })
@@ -21,6 +22,9 @@ const BrowserExtensionList = () => {
 
         // BROWSER EXTENSION MAIN UI 
         <>
+
+            {/* FILTER NAV BAR  */}
+
             <div className="flex justify-between text-[var(--neutral-100)] py-12">
 
                 <h1 className="text-xl sm:text-2xl xl:text-3xl font-[600]">Extension List</h1>
@@ -60,15 +64,30 @@ const BrowserExtensionList = () => {
 
                 </div>
 
-                {/* BROWSER EXTENSION CARDS LIST  */}
-
             </div>
+
+
+            {/* BROWSER EXTENSION CARDS LIST  */}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {
-                    extension.map(({ logo, name, description, isActive }, id) => {
-                        return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
-                    })
+
+                    activeButton === "All" ? (
+                        extension.map(({ logo, name, description, isActive }, id) => {
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                        })
+                    ) : activeButton === "Active" ? (
+
+                        extension.filter(ext => ext.isActive === true).map(({ logo, name, description, isActive }, id) => {
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                        })
+                    ) : (
+
+                        extension.filter(ext => ext.isActive == false).map(({ logo, name, description, isActive }, id) => {
+                            return <BrowserExtensionCard key={id} extensionLogo={logo} extensionName={name} extensionDescription={description} isActive={isActive} />
+                        })
+                    )
+
                 }
             </div>
 

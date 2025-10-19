@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const BrowserExtensionCard = ({extensionLogo, extensionName, extensionDescription, isActive}) => {
+const BrowserExtensionCard = ({ extensionLogo, extensionName, extensionDescription, isActive }) => {
 
     const [isActiveButton, setIsActiveButton] = useState(isActive);
 
+    useEffect(() => {
+        setIsActiveButton(isActive);
+    }, [isActive]);
+
     const toggleButton = () => {
-        setIsActiveButton((prev) => !prev);
-    }
+        setIsActiveButton(prev => !prev);
+    };
 
     const extensionLogoUrlSrc = extensionLogo.split(".")[1];
 
@@ -36,7 +40,7 @@ const BrowserExtensionCard = ({extensionLogo, extensionName, extensionDescriptio
 
                 {/* TOGGLE BUTTON  */}
                 <div className={`w-16 h-8 flex transition-all duration-50 ease-in
-                   ${isActiveButton === true
+                   ${isActiveButton
                         ? " bg-[var(--red-500)] justify-end"
                         : " bg-[var(--neutral-700)] justify-start"
                     }
