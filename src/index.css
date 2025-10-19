@@ -35,3 +35,8 @@
      font-family: "Noto Sans", sans-serif;
   }
 }
+
+
+#main-container{
+  background: var(--dark-gradient)
+}
